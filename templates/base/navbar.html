@@ -1,0 +1,11 @@
+<nav class="navbar navbar-dark bg-dark px-3">
+    <span class="navbar-brand">Medical Platform</span>
+
+    <span class="text-white">
+        {% if request.user.is_authenticated %}
+            {{ request.user.username }} ({{ request.user.role }})
+        {% else %}
+            Guest
+        {% endif %}
+    </span>
+</nav>

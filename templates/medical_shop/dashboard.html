@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %}
+{% block content %}
+{% csrf_token %}
+
+<h3>Medical Shop Dashboard</h3>
+
+<h5>Today's Bookings</h5>
+<table class="table">
+    <tr>
+        <th>Patient</th>
+        <th>Doctor</th>
+        <th>Token</th>
+        <th>Status</th>
+    </tr>
+
+    {% for b in today_bookings %}
+    <tr>
+        <td>{{ b.patient.username }}</td>
+        <td>{{ b.doctor }}</td>
+        <td>{{ b.token_number }}</td>
+        <td>{{ b.status }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+<h3>Medical Shops</h3>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Name</th>
+        <th>City</th>
+        <th>Verified</th>
+        <th>Action</th>
+    </tr>
+
+    {% for shop in shops %}
+    <tr>
+        <td>{{ shop.name }}</td>
+        <td>{{ shop.city }}</td>
+        <td>{{ shop.is_verified }}</td>
+        <td>
+            <a href="{% url 'superadmin:verify_shop' shop.id %}" class="btn btn-sm btn-success">
+                Verify
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

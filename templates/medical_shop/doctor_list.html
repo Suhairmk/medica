@@ -1,0 +1,61 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+<h3>Doctors</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Specialisation</th>
+            <th>Experience</th>
+            <th>Fee</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for doctor in doctors %}
+        <tr>
+            <td>
+                {{ doctor.user.first_name }} {{ doctor.user.last_name }}
+            </td>
+            <td>{{ doctor.specialisation }}</td>
+            <td>{{ doctor.experience_years }} yrs</td>
+            <td>₹ {{ doctor.consultation_fee }}</td>
+
+            <td>
+                {% if doctor.connection_status == 'ACCEPTED' %}
+                    <span class="badge bg-success">Connected</span>
+                {% elif doctor.connection_status == 'PENDING' %}
+                    <span class="badge bg-warning">Pending</span>
+                {% else %}
+                    <span class="badge bg-secondary">Not Connected</span>
+                {% endif %}
+            </td>
+
+            <td>
+                {% if doctor.connection_status == None %}
+                    <a href="{% url 'medical_shop:send_doctor_request' doctor.id %}"
+                       class="btn btn-sm btn-primary">
+                        Send Request
+                    </a>
+                {% elif doctor.connection_status == 'PENDING' %}
+                    <button class="btn btn-sm btn-secondary" disabled>
+                        Requested
+                    </button>
+                {% else %}
+                    <span class="text-success">✓</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No doctors found</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

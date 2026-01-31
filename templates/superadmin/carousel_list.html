@@ -1,0 +1,21 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+<h3>Carousels</h3>
+<a href="{% url 'superadmin:carousel_create' %}" class="btn btn-primary mb-2">Add Carousel</a>
+
+<table class="table">
+    <tr>
+        <th>Title</th>
+        <th>Active</th>
+    </tr>
+
+    {% for c in carousels %}
+    <tr>
+        <td>{{ c.title }}</td>
+        <td>{{ c.is_active }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

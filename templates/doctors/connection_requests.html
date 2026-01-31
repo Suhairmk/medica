@@ -1,0 +1,14 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+<h3>Clinic Connection Requests</h3>
+
+{% for r in requests %}
+    <p>
+        {{ r.medical_shop.name }}
+        <a href="{% url 'doctors:update_connection' r.id 'ACCEPTED' %}" class="btn btn-sm btn-success">Accept</a>
+        <a href="{% url 'doctors:update_connection' r.id 'REJECTED' %}" class="btn btn-sm btn-danger">Reject</a>
+    </p>
+{% endfor %}
+
+{% endblock %}

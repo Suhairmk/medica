@@ -1,0 +1,22 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+<h3>Doctor Dashboard</h3>
+
+<table class="table">
+    <tr>
+        <th>Patient</th>
+        <th>Token</th>
+        <th>Status</th>
+    </tr>
+
+    {% for b in today_bookings %}
+    <tr>
+        <td>{{ b.patient.username }}</td>
+        <td>{{ b.token_number }}</td>
+        <td>{{ b.status }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

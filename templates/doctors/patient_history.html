@@ -1,0 +1,20 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+<h3>Patient History</h3>
+
+<table class="table">
+    <tr>
+        <th>Date</th>
+        <th>Status</th>
+    </tr>
+
+    {% for h in history %}
+    <tr>
+        <td>{{ h.appointment_date }}</td>
+        <td>{{ h.status }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
