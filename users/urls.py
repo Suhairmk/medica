@@ -15,11 +15,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from .views import redirect_after_login
+from .views import CustomLoginView
 
 app_name = 'users'
 
 urlpatterns = [
-    path('', redirect_after_login, name='redirect_after_login'),
+    path('login/', CustomLoginView.as_view(), name='login'),
 ]
 
